@@ -1,33 +1,53 @@
-// https://www.codewars.com/kata/56cd44e1aa4ac7879200010b/train/javascript
+// https://www.codewars.com/kata/5966e33c4e686b508700002d/train/javascript
 // Level 8kyu
 
 /** Directions **/
 
-// Is the string uppercase?
-//     Task
-//     Add the isUpperCase method to String to see whether the string is ALL CAPS. For example:
+// Create a function that takes 2 positive integers in form of a string as an input, and outputs the sum
+// (also as a string):
 //
-//     "c".isUpperCase() == false
-// "C".isUpperCase() == true
-// "hello I AM DONALD".isUpperCase() == false
-// "HELLO I AM DONALD".isUpperCase() == true
-// "ACSKLDFJSgSKLDFJSKLDFJ".isUpperCase() == false
-// "ACSKLDFJSGSKLDFJSKLDFJ".isUpperCase() == true
-// In this Kata, a string is said to be in ALL CAPS whenever it does not contain any lowercase letter so any
-// string containing no letters at all is trivially considered to be in ALL CAPS.
+// sumStr("4", "5")    // should output "9"
+// sumStr("34", "5")   // should output "39"
+// If either input is an empty string, consider it as zero.
 
 /** Function **/
 
-String.prototype.isUpperCase = function() {
-    console.log(String);
-};
+function sumStr(a,b) {
+    // first I need to convert the values into numbers, but I need a condition for empty string
+    if (a === '') {
+        a = 0;
+    } else {
+        a = parseInt(a);
+    }
+    if (b === '') {
+        b = 0;
+    } else {
+        b = parseInt(b);
+    }
+    // next I will add them together
+    let sum = a + b;
+    // finally I need to convert the values back into a string and return it
+    console.log(sum.toString());
+    return sum.toString();
+}
 
+/** Advanced Solution (Refactored) **/
+
+function sumStr(a,b) {
+    if (a === '') {
+        a = 0;
+    }
+    if (b === '') {
+        b = 0;
+    }
+    return (parseInt(a) + parseInt(b)).toString();
+}
 
 /** Test Cases **/
 
-'c'.isUpperCase(); // => false, 'c is not upper case'
-'C'.isUpperCase(); // => true, 'C is upper case'
-'hello I AM DONALD'.isUpperCase(); // => false, 'hello I AM DONALD not is upper case'
-'HELLO I AM DONALD'.isUpperCase(); // => true, 'HELLO I AM DONALD is upper case'
-'ACSKLDFJSgSKLDFJSKLDFJ'.isUpperCase(); // => false, 'ACSKLDFJSgSKLDFJSKLDFJ not is upper case'
-'ACSKLDFJSGSKLDFJSKLDFJ'.isUpperCase(); // => true,
+// sumStr("4","5"); // => "9"
+// sumStr("34","5"); // => "39"
+console.log(sumStr("", "2")); // => "2"
+console.log(sumStr('', '')); // => "0"
+
+
