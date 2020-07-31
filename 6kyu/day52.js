@@ -23,17 +23,14 @@
 function meeting(s) {
     // separate the string by ;
     let names = s.split(';');
-    // console.log(names);
     let namesToSort = [];
     // put the string into an object with first name and last name
     for (let name of names) {
         namesToSort.push(name.toUpperCase().split(':'));
     }
     // if the last name is the same, need to make sure the first name is sorted correctly
-   // let lastNameSort = namesToSort.sort((a,b) => b[1] > a[1] ? -1 : b[0] > a[0] ? 0: 1);
-    // these two return the same thing and neither are sorting the first name correctly.
-    let lastNameSort = namesToSort.sort((a,b) => b[1] > a[1] ? -1 : 0);
-
+    let lastNameSort = namesToSort.sort((a,b) => b[0] > a[0] ? -1 : 0).sort((a,b) => b[1] > a[1] ? -1 : 0);
+    console.log(lastNameSort);
     // now we need to put this sorted list into a new string format...
     let meetingString = '';
     for (let person of lastNameSort) {
@@ -41,14 +38,15 @@ function meeting(s) {
     }
     // return the meetingString
     console.log(meetingString);
+    console.log(meetingString === "(BELL, MEGAN)(GATES, ANTONY)(GATES, GRACE)(META, ALISSA)(RUDD, ELIZABETH)(RUSSELL, JAMES)(STAN, AMANDY)(STAN, VICTORIA)(STEVE, ANNA)(WAHL, ALEX)(WAHL, ANNA)(WAHL, JACOB)");
     return meetingString;
 }
 
 /** Advanced Solution (Refactored) **/
 
-// function meeting(s) {
-//     // your code
-// }
+// The above solution works (see line 41 for proof of matching on the last test case) but did not pass
+// tests in codewars due to unstable sort function inside the provided tests. 
+
 
 /** Test Cases **/
 
