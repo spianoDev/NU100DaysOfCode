@@ -43,30 +43,30 @@ function workOnStrings(a,b){
     for (let char of b.toLowerCase()) {
         frequencyCounterB[char] = (frequencyCounterB[char] || 0) +1;
     }
-    for (let key of Object.keys(frequencyCounterA)) {
-        console.log(frequencyCounterA[key]);
-    }
     console.log(frequencyCounterA, frequencyCounterB);
     let matchingKeys = Object.keys(frequencyCounterA).filter(key => Object.keys(frequencyCounterB).includes(key));
     console.log(matchingKeys);
+    let newA;
     for (let commonKey of matchingKeys) {
         if (frequencyCounterB[commonKey] % 2 === 1 && a.match(commonKey)) {
-            a = a.replace(commonKey, commonKey.toUpperCase());
+            newA = a.split('').splice(a.indexOf(commonKey), 1, commonKey.toUpperCase());
+            // a = a.replace(commonKey, commonKey.toUpperCase());
         } else
-            if (frequencyCounterB[commonKey] % 2 === 1 && a.match(commonKey.toUpperCase()))
+            // if (frequencyCounterB[commonKey] % 2 === 1 && a.match(commonKey.toUpperCase()))
             {
-            a = a.replace(commonKey.toUpperCase(), commonKey);
+              newA = a.split('').splice(a.indexOf(commonKey.toUpperCase()), 1, commonKey);
+            // a = a.replace(commonKey.toUpperCase(), commonKey);
         }
         if (frequencyCounterA[commonKey] % 2 === 1 && b.match(commonKey)) {
             b = b.replace(new RegExp(commonKey, 'g'), commonKey.toUpperCase());
         } else
             // if (frequencyCounterA[commonKey] % 2 === 1 && b.match(new RegExp(commonKey.toUpperCase(), 'g')))
             {
-                console.log('arrived here')
+                console.log('arrived here');
             b = b.replace(new RegExp(commonKey.toUpperCase(), 'g'), commonKey);
         }
     }
-    console.log(a, b);
+    console.log(newA, b);
     return a.concat(b);
 }
 
