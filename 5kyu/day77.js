@@ -46,37 +46,50 @@ function workOnStrings(a,b){
     console.log(frequencyCounterA, frequencyCounterB);
     let matchingKeys = Object.keys(frequencyCounterA).filter(key => Object.keys(frequencyCounterB).includes(key));
     console.log(matchingKeys);
-    let newA;
-    for (let commonKey of matchingKeys) {
-        if (frequencyCounterB[commonKey] % 2 === 1 && a.match(commonKey)) {
-            newA = a.split('').splice(a.indexOf(commonKey), 1, commonKey.toUpperCase());
-            // a = a.replace(commonKey, commonKey.toUpperCase());
-        } else
-            // if (frequencyCounterB[commonKey] % 2 === 1 && a.match(commonKey.toUpperCase()))
-            {
-              newA = a.split('').splice(a.indexOf(commonKey.toUpperCase()), 1, commonKey);
-            // a = a.replace(commonKey.toUpperCase(), commonKey);
+
+
+        for (let commonKey of matchingKeys) {
+            if (frequencyCounterB[commonKey] % 2 === 1 && a.match(commonKey)) {
+                // newA = a.split('').splice(a.indexOf(commonKey), 1, commonKey.toUpperCase());
+                // a = a.replace(commonKey, commonKey.toUpperCase());
+                a = a.split(commonKey).join(commonKey.toUpperCase());
+            } else if (frequencyCounterB[commonKey] % 2 === 1 && a.match(commonKey.toUpperCase())) {
+                // if (frequencyCounterB[commonKey] % 2 === 1 && a.match(commonKey.toUpperCase()))
+
+                // newA = a.split('').splice(a.indexOf(commonKey.toUpperCase()), 1, commonKey);
+                // a = a.replace(commonKey.toUpperCase(), commonKey);
+                a = a.split(commonKey.toUpperCase()).join(commonKey);
+            }
         }
-        if (frequencyCounterA[commonKey] % 2 === 1 && b.match(commonKey)) {
-            b = b.replace(new RegExp(commonKey, 'g'), commonKey.toUpperCase());
-        } else
+
+    for (let commonKey of matchingKeys) {
+
+         if (frequencyCounterA[commonKey] % 2 === 1 && b.match(commonKey.toUpperCase()))
             // if (frequencyCounterA[commonKey] % 2 === 1 && b.match(new RegExp(commonKey.toUpperCase(), 'g')))
             {
                 console.log('arrived here');
-            b = b.replace(new RegExp(commonKey.toUpperCase(), 'g'), commonKey);
+            // b = b.replace(new RegExp(commonKey.toUpperCase(), 'g'), commonKey);
+                b = b.split(commonKey.toUpperCase()).join(commonKey);
+                console.log(commonKey);
+        }  else if (frequencyCounterA[commonKey] % 2 === 1 && b.match(commonKey)) {
+            // b = b.replace(new RegExp(commonKey, 'g'), commonKey.toUpperCase());
+            b = b.split(commonKey).join(commonKey.toUpperCase());
+
         }
     }
-    console.log(newA, b);
+    console.log(a, b);
     return a.concat(b);
 }
 
 /** Advanced Solution (Refactored) **/
+
+// this is very close, but the issue is with second instances of the opposite case.
 
 // No refactor today
 
 /** Test Cases **/
 
 // workOnStrings("abc","cde"); // => "abCCde"
-workOnStrings("abcdeFgtrzw", "defgGgfhjkwqe"); // => "abcDeFGtrzWDEFGgGFhjkWqE"
-// workOnStrings("abcdeFg", "defgG"); // => "abcDEfgDEFGg"
+// workOnStrings("abcdeFgtrzw", "defgGgfhjkwqe"); // => "abcDeFGtrzWDEFGgGFhjkWqE"
+workOnStrings("abcdeFg", "defgG"); // => "abcDEfgDEFGg"
 // workOnStrings("abab", "bababa"); // => "ABABbababa"
