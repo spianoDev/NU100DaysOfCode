@@ -14,6 +14,57 @@
 // For instance: values(1000) = 11. See test examples for more cases.
 
 /** Function **/
+function consecutiveSquares(num) {
+    let sum = 0;
+    let lowerBound = 1;
+    let upperBound = 1;
+    let max = Math.floor(Math.sqrt(num));
+    while (sum !== num) {
+        if (sum < num) {
+            upperBound++;
+            sum += upperBound * upperBound;
+        } else if (sum > num) {
+            sum -= lowerBound * lowerBound;
+            lowerBound++;
+        }
+        if (upperBound < max) {
+            console.log(num);
+        }
+
+    }
+}
+ consecutiveSquares(1000);
+
+// let sequenceOptions = [];
+
+// function findConsecutiveSquares(num) {
+//     let iterator = 10;
+//
+//     function consecutiveSquares(iterator, n) {
+//         let option = num ** 2;
+//         while (iterator > 0) {
+//             option += (num + iterator) ** 2;
+//             console.log(option);
+//             if (option.toString() === option.toString().split('').reverse().join('')) {
+//                 sequenceOptions.push(option);
+//             }
+//             iterator -= 1;
+//             n += 1;
+//         }
+//     }
+//     consecutiveSquares(10);
+//
+//
+//     while (num > 0) {
+//         let option = num ** 2 + (num + 1) ** 2;
+//         if (option.toString() === option.toString().split('').reverse().join('')) {
+//             sequenceOptions.push(option);
+//         }
+//         num--;
+//     }
+// }
+// trying to refactor the consecutive squares functions, but just cannot see the solution yet...
+
 let sequenceOptions = [];
 function findTwoConsecutiveSquares(num) {
     while (num > 0) {
@@ -52,7 +103,6 @@ function findSixConsecutiveSquares(num) {
         num--;
     }
 }
-
 function findSevenConsecutiveSquares(num) {
     while (num > 0) {
         let option = num ** 2 + (num + 1) ** 2 + (num + 2) ** 2 + (num + 3) ** 2 + (num + 4) ** 2 + (num + 5) ** 2 + (num + 6) ** 2;
@@ -81,23 +131,65 @@ function findTenConsecutiveSquares(num) {
         num--;
     }
 }
-
-findTwoConsecutiveSquares(30);
-findThreeConsecutiveSquares(30);
-findFiveConsecutiveSquares(30);
-findSixConsecutiveSquares(30);
-findSevenConsecutiveSquares(30);
-findNineConsecutiveSquares(30);
-findTenConsecutiveSquares(30);
+function findElevenConsecutiveSquares(num) {
+    while (num > 0) {
+        let option = num ** 2 + (num + 1) ** 2 + (num + 2) ** 2 + (num + 3) ** 2 + (num + 4) ** 2 + (num + 5) ** 2 + (num + 6) ** 2 + (num + 7) ** 2 + (num + 8) ** 2 + (num + 9) ** 2 + (num + 10) ** 2;
+        if (option.toString() === option.toString().split('').reverse().join('')) {
+            sequenceOptions.push(option);
+        }
+        num--;
+    }
+}
+function findTwelveConsecutiveSquares(num) {
+    while (num > 0) {
+        let option = num ** 2 + (num + 1) ** 2 + (num + 2) ** 2 + (num + 3) ** 2 + (num + 4) ** 2 + (num + 5) ** 2 + (num + 6) ** 2 + (num + 7) ** 2 + (num + 8) ** 2 + (num + 9) ** 2 + (num + 10) ** 2 + (num + 11) ** 2;
+        if (option.toString() === option.toString().split('').reverse().join('')) {
+            sequenceOptions.push(option);
+        }
+        num--;
+    }
+}
+function findThirteenConsecutiveSquares(num) {
+    while (num > 0) {
+        let option = num ** 2 + (num + 1) ** 2 + (num + 2) ** 2 + (num + 3) ** 2 + (num + 4) ** 2 + (num + 5) ** 2 + (num + 6) ** 2 + (num + 7) ** 2 + (num + 8) ** 2 + (num + 9) ** 2 + (num + 10) ** 2 + (num + 11) ** 2 + (num + 12) ** 2;
+        if (option.toString() === option.toString().split('').reverse().join('')) {
+            sequenceOptions.push(option);
+        }
+        num--;
+    }
+}
+function findFourteenConsecutiveSquares(num) {
+    while (num > 0) {
+        let option = num ** 2 + (num + 1) ** 2 + (num + 2) ** 2 + (num + 3) ** 2 + (num + 4) ** 2 + (num + 5) ** 2 + (num + 6) ** 2 + (num + 7) ** 2 + (num + 8) ** 2 + (num + 9) ** 2 + (num + 10) ** 2 + (num + 11) ** 2 + (num + 12) ** 2 + (num + 13) ** 2;
+        if (option.toString() === option.toString().split('').reverse().join('')) {
+            sequenceOptions.push(option);
+        }
+        num--;
+    }
+}
+//
+findTwoConsecutiveSquares(3000);
+findThreeConsecutiveSquares(3000);
+findFiveConsecutiveSquares(3000);
+findSixConsecutiveSquares(3000);
+findSevenConsecutiveSquares(3000);
+findNineConsecutiveSquares(3000);
+findTenConsecutiveSquares(3000);
+findElevenConsecutiveSquares(3000);
+findTwelveConsecutiveSquares(3000);
+findThirteenConsecutiveSquares(3000);
+findFourteenConsecutiveSquares(3000);
 let options = sequenceOptions.sort((a,b) => a - b);
 console.log(options);
 function values(n){
-   for (let i = 0; i <= n; i++) {
-       if (i.toString().length > 1 && i.toString() === i.toString().split('').reverse().join('')) {
-           console.log(i, test);
-
-       }
-   }
+    let count = 0;
+    for (let num of sequenceOptions) {
+        if (num <= n) {
+            count += 1;
+        }
+    }
+    console.log(count);
+    return count;
 }
 
 /** Advanced Solution (Refactored) **/
@@ -106,8 +198,8 @@ function values(n){
 
 /** Test Cases **/
 
-// values(100); // => 3
-// values(200); // => 4
-// values(300); // => 4
-// values(400); // => 5
-// values(1000); // => 11
+values(100); // => 3
+values(200); // => 4
+values(300); // => 4
+values(400); // => 5
+values(1000); // => 11
