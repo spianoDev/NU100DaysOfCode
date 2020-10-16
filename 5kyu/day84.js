@@ -14,26 +14,26 @@
 // For instance: values(1000) = 11. See test examples for more cases.
 
 /** Function **/
-function consecutiveSquares(num) {
-    let sum = 0;
-    let lowerBound = 1;
-    let upperBound = 1;
-    let max = Math.floor(Math.sqrt(num));
-    while (sum !== num) {
-        if (sum < num) {
-            upperBound++;
-            sum += upperBound * upperBound;
-        } else if (sum > num) {
-            sum -= lowerBound * lowerBound;
-            lowerBound++;
-        }
-        if (upperBound < max) {
-            console.log(num);
-        }
-
-    }
-}
- consecutiveSquares(1000);
+// function consecutiveSquares(num) {
+//     let sum = 0;
+//     let lowerBound = 1;
+//     let upperBound = 1;
+//     let max = Math.floor(Math.sqrt(num));
+//     while (sum !== num) {
+//         if (sum < num) {
+//             upperBound++;
+//             sum += upperBound * upperBound;
+//         } else if (sum > num) {
+//             sum -= lowerBound * lowerBound;
+//             lowerBound++;
+//         }
+//         if (upperBound < max) {
+//             console.log(num);
+//         }
+//
+//     }
+// }
+//  consecutiveSquares(1000);
 
 // let sequenceOptions = [];
 
@@ -65,7 +65,8 @@ function consecutiveSquares(num) {
 // }
 // trying to refactor the consecutive squares functions, but just cannot see the solution yet...
 
-let sequenceOptions = [];
+
+
 function findTwoConsecutiveSquares(num) {
     while (num > 0) {
         let option = num ** 2 + (num + 1) ** 2;
@@ -168,19 +169,39 @@ function findFourteenConsecutiveSquares(num) {
     }
 }
 //
-findTwoConsecutiveSquares(3000);
-findThreeConsecutiveSquares(3000);
-findFiveConsecutiveSquares(3000);
-findSixConsecutiveSquares(3000);
-findSevenConsecutiveSquares(3000);
-findNineConsecutiveSquares(3000);
-findTenConsecutiveSquares(3000);
-findElevenConsecutiveSquares(3000);
-findTwelveConsecutiveSquares(3000);
-findThirteenConsecutiveSquares(3000);
-findFourteenConsecutiveSquares(3000);
-let options = sequenceOptions.sort((a,b) => a - b);
-console.log(options);
+// findTwoConsecutiveSquares(3000);
+// findThreeConsecutiveSquares(3000);
+// findFiveConsecutiveSquares(3000);
+// findSixConsecutiveSquares(3000);
+// findSevenConsecutiveSquares(3000);
+// findNineConsecutiveSquares(3000);
+// findTenConsecutiveSquares(3000);
+// findElevenConsecutiveSquares(3000);
+// findTwelveConsecutiveSquares(3000);
+// findThirteenConsecutiveSquares(3000);
+// findFourteenConsecutiveSquares(3000);
+let sequenceOptions = [];
+
+function findConsecutiveSquares(num, k) {
+    let n = num;
+
+    for (let i = 1; i <= k; i++) {
+        let sum = k ** 2;
+        sum += (k - i) ** 2;
+        console.log(sum)
+        while (num > 0) {
+            // let option = sum;
+            if (sum.toString() === sum.toString().split('').reverse().join('')) {
+                sequenceOptions.push(sum);
+            }
+            num--;
+        }
+        num = n;
+    }
+}
+findConsecutiveSquares(100, 10);
+// let options = sequenceOptions.sort((a,b) => a - b);
+console.log(sequenceOptions);
 function values(n){
     let count = 0;
     for (let num of sequenceOptions) {
